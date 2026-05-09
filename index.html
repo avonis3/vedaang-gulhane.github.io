@@ -1,0 +1,973 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Vedaang Gulhane | Product Manager</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #080c14;
+      --bg2: #0d1220;
+      --bg3: #111827;
+      --card: #141b2d;
+      --border: #1e2d45;
+      --accent: #6366f1;
+      --accent2: #818cf8;
+      --teal: #06b6d4;
+      --green: #10b981;
+      --purple: #a855f7;
+      --text: #f1f5f9;
+      --muted: #94a3b8;
+      --dimmer: #64748b;
+      --glow: rgba(99,102,241,0.15);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 5%; height: 64px;
+      background: rgba(8,12,20,0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      transition: all 0.3s;
+    }
+    .nav-logo {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 800; font-size: 1.2rem;
+      background: linear-gradient(135deg, #6366f1, #06b6d4);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      text-decoration: none; cursor: pointer;
+    }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a {
+      color: var(--muted); text-decoration: none; font-size: 0.875rem;
+      font-weight: 500; transition: color 0.2s; letter-spacing: 0.02em;
+    }
+    .nav-links a:hover { color: var(--text); }
+
+    /* HERO */
+    #hero {
+      min-height: 100vh;
+      display: flex; align-items: center;
+      padding: 96px 5% 60px;
+      position: relative; overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute; inset: 0; z-index: 0;
+      background: radial-gradient(ellipse 80% 60% at 60% 40%, rgba(99,102,241,0.12) 0%, transparent 70%),
+                  radial-gradient(ellipse 50% 40% at 85% 70%, rgba(6,182,212,0.08) 0%, transparent 60%);
+    }
+    .hero-grid {
+      position: absolute; inset: 0; z-index: 0;
+      background-image: linear-gradient(rgba(99,102,241,0.04) 1px, transparent 1px),
+                        linear-gradient(90deg, rgba(99,102,241,0.04) 1px, transparent 1px);
+      background-size: 60px 60px;
+      mask-image: radial-gradient(ellipse at center, black 30%, transparent 80%);
+    }
+    .hero-content {
+      position: relative; z-index: 1;
+      display: grid; grid-template-columns: 1fr auto;
+      gap: 4rem; align-items: center; width: 100%; max-width: 1100px; margin: 0 auto;
+    }
+    h1 {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: clamp(2.5rem, 6vw, 4.2rem);
+      font-weight: 800; line-height: 1.1; margin-bottom: 0.5rem;
+      letter-spacing: -0.02em;
+    }
+    .gradient-text {
+      background: linear-gradient(135deg, #6366f1 0%, #06b6d4 50%, #a855f7 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    .hero-subtitle {
+      font-size: clamp(1rem, 2vw, 1.2rem); color: var(--muted);
+      margin-top: 1.2rem; margin-bottom: 1.5rem; font-weight: 400; max-width: 520px;
+    }
+    .hero-tags {
+      display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 2rem;
+    }
+    .hero-tag {
+      background: rgba(255,255,255,0.05); border: 1px solid var(--border);
+      color: var(--muted); padding: 0.3rem 0.75rem; border-radius: 6px;
+      font-size: 0.78rem; font-weight: 500;
+    }
+    .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent), var(--teal));
+      color: white; padding: 0.75rem 1.75rem; border-radius: 10px;
+      font-weight: 600; font-size: 0.95rem; text-decoration: none;
+      transition: all 0.2s; box-shadow: 0 0 20px rgba(99,102,241,0.3);
+    }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 0 30px rgba(99,102,241,0.5); }
+    .btn-secondary {
+      background: transparent; border: 1px solid var(--border);
+      color: var(--text); padding: 0.75rem 1.75rem; border-radius: 10px;
+      font-weight: 500; font-size: 0.95rem; text-decoration: none;
+      transition: all 0.2s;
+    }
+    .btn-secondary:hover { border-color: var(--accent); color: var(--accent2); background: var(--glow); }
+
+    /* Hero photo */
+    .hero-photo-wrap { position: relative; flex-shrink: 0; }
+    .hero-photo-ring {
+      width: 280px; height: 280px; border-radius: 50%;
+      background: linear-gradient(135deg, #6366f1, #06b6d4, #a855f7);
+      padding: 3px; position: relative;
+      box-shadow: 0 0 60px rgba(99,102,241,0.3);
+      animation: float 6s ease-in-out infinite;
+    }
+    @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-12px)} }
+    .hero-photo-inner {
+      width: 100%; height: 100%; border-radius: 50%;
+      overflow: hidden; background: var(--card);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .hero-photo-inner img { width: 100%; height: 100%; object-fit: cover; }
+    .photo-placeholder { font-size: 5rem; opacity: 0.3; }
+    .hero-photo-dot {
+      position: absolute; width: 16px; height: 16px;
+      background: var(--green); border-radius: 50%;
+      border: 3px solid var(--bg); bottom: 20px; right: 10px;
+    }
+    .hero-orbit {
+      position: absolute; inset: -20px;
+      border: 1px dashed rgba(99,102,241,0.2); border-radius: 50%;
+      animation: rotate 20s linear infinite;
+    }
+    .hero-orbit::before {
+      content: ''; position: absolute; top: 10px; left: 50%;
+      width: 8px; height: 8px; border-radius: 50%;
+      background: var(--accent); transform: translateX(-50%);
+      box-shadow: 0 0 8px var(--accent);
+    }
+    @keyframes rotate { from{transform:rotate(0deg)} to{transform:rotate(360deg)} }
+
+    /* SECTION SEPARATOR */
+    .section-sep {
+      height: 1px;
+      background: linear-gradient(90deg, transparent 0%, rgba(99,102,241,0.15) 20%, rgba(99,102,241,0.4) 50%, rgba(6,182,212,0.2) 75%, transparent 100%);
+      position: relative;
+    }
+    .section-sep::before {
+      content: '';
+      position: absolute;
+      inset: -6px 0;
+      background: linear-gradient(90deg, transparent 0%, rgba(99,102,241,0.04) 30%, rgba(99,102,241,0.08) 50%, rgba(6,182,212,0.04) 70%, transparent 100%);
+      filter: blur(6px);
+    }
+
+    /* SECTION BASE */
+    section { padding: 100px 5%; }
+    .container { max-width: 1100px; margin: 0 auto; }
+    .section-label {
+      font-size: 0.78rem; font-weight: 600; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--accent2); margin-bottom: 0.75rem;
+    }
+    .section-title {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: clamp(1.8rem, 4vw, 2.6rem); font-weight: 800;
+      letter-spacing: -0.02em; margin-bottom: 1rem; line-height: 1.2;
+    }
+    .section-sub {
+      color: var(--muted); max-width: 560px; font-size: 1rem; margin-bottom: 3.5rem;
+    }
+
+    /* IMPACT STATS */
+    #impact { background: var(--bg2); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+    .stats-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2px; background: var(--border);
+    }
+    .stat-card {
+      background: var(--bg2); padding: 2.5rem 2rem;
+      position: relative; overflow: hidden; transition: background 0.3s;
+    }
+    .stat-card:hover { background: var(--card); }
+    .stat-card::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+      background: linear-gradient(90deg, transparent, var(--accent), transparent);
+      opacity: 0; transition: opacity 0.3s;
+    }
+    .stat-card:hover::before { opacity: 1; }
+    .stat-number {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 2.6rem; font-weight: 800;
+      background: linear-gradient(135deg, var(--accent2), var(--teal));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      line-height: 1;
+    }
+    .stat-unit { font-size: 1.5rem; }
+    .stat-label { color: var(--muted); font-size: 0.85rem; margin-top: 0.4rem; line-height: 1.4; }
+    .stat-icon { font-size: 1.4rem; margin-bottom: 0.75rem; }
+
+    /* ABOUT */
+    #about { background: var(--bg); }
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+    .about-text p {
+      color: var(--muted); margin-bottom: 1.2rem; font-size: 1.05rem; line-height: 1.8;
+    }
+    .about-text p strong { color: var(--text); font-weight: 600; }
+
+    /* Photo grid */
+    .photo-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: auto auto;
+      gap: 10px;
+    }
+    .photo-item {
+      position: relative; border-radius: 14px; overflow: hidden;
+      border: 1px solid var(--border);
+      background: var(--card);
+      aspect-ratio: 4/3;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .photo-item:hover { transform: scale(1.02); box-shadow: 0 12px 40px rgba(0,0,0,0.5); z-index: 1; }
+    .photo-item img {
+      width: 100%; height: 100%; object-fit: cover; display: block;
+    }
+    .photo-caption {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      background: linear-gradient(to top, rgba(8,12,20,0.92) 0%, transparent 100%);
+      padding: 1.2rem 0.9rem 0.7rem;
+      font-size: 0.75rem; color: rgba(255,255,255,0.75); font-weight: 500;
+      opacity: 0; transition: opacity 0.3s;
+    }
+    .photo-item:hover .photo-caption { opacity: 1; }
+    .photo-placeholder-bg {
+      width: 100%; height: 100%;
+      background: var(--card);
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      gap: 0.5rem; color: var(--dimmer); font-size: 0.78rem; text-align: center; padding: 1rem;
+    }
+    .photo-placeholder-bg span { font-size: 1.8rem; opacity: 0.4; }
+
+    .bg-purple { background: rgba(168,85,247,0.15); }
+    .bg-teal { background: rgba(6,182,212,0.15); }
+    .bg-green { background: rgba(16,185,129,0.15); }
+    .bg-orange { background: rgba(249,115,22,0.15); }
+
+    /* EXPERIENCE */
+    #experience { background: var(--bg2); }
+    .timeline { display: flex; flex-direction: column; gap: 0; }
+    .timeline-item {
+      display: grid; grid-template-columns: 170px 1fr;
+      gap: 2rem; position: relative; padding-bottom: 3rem;
+    }
+    .timeline-item::before {
+      content: ''; position: absolute;
+      left: 170px; top: 0; bottom: 0;
+      width: 1px; background: var(--border);
+    }
+    .timeline-item:last-child::before { display: none; }
+    .timeline-left {
+      text-align: right; padding-top: 0.25rem;
+      padding-right: 18px;
+    }
+    .timeline-date {
+      font-size: 0.8rem; color: var(--dimmer); font-weight: 500; line-height: 1.5;
+    }
+    .timeline-dot {
+      position: absolute; left: 170px; top: 6px;
+      width: 12px; height: 12px; border-radius: 50%;
+      background: var(--accent); border: 2px solid var(--bg2);
+      transform: translateX(-50%);
+      box-shadow: 0 0 10px rgba(99,102,241,0.5);
+    }
+    .timeline-dot.current { background: var(--green); box-shadow: 0 0 10px rgba(16,185,129,0.5); }
+    .timeline-right { padding-left: 2rem; }
+    .exp-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 16px; padding: 1.75rem 2rem; transition: all 0.3s;
+    }
+    .exp-card:hover { border-color: rgba(99,102,241,0.3); box-shadow: 0 8px 32px rgba(0,0,0,0.3); }
+    .exp-header {
+      display: flex; justify-content: space-between; align-items: flex-start;
+      margin-bottom: 0.3rem; flex-wrap: wrap; gap: 0.5rem;
+    }
+    .exp-company {
+      font-family: 'Plus Jakarta Sans', sans-serif; font-size: 1.15rem; font-weight: 700;
+    }
+    .exp-badge {
+      font-size: 0.72rem; font-weight: 600; padding: 0.25rem 0.65rem;
+      border-radius: 100px; letter-spacing: 0.05em;
+    }
+    .badge-current { background: rgba(16,185,129,0.15); color: var(--green); border: 1px solid rgba(16,185,129,0.3); }
+    .badge-prev { background: rgba(99,102,241,0.1); color: var(--accent2); border: 1px solid rgba(99,102,241,0.2); }
+    .badge-intern { background: rgba(6,182,212,0.1); color: var(--teal); border: 1px solid rgba(6,182,212,0.2); }
+    .exp-role { font-size: 0.88rem; color: var(--accent2); font-weight: 500; margin-bottom: 1rem; }
+    .exp-wins { list-style: none; display: flex; flex-direction: column; gap: 0.7rem; }
+    .exp-wins li {
+      display: block;
+      padding-left: 1.4rem;
+      position: relative;
+      font-size: 0.88rem;
+      color: var(--muted);
+      line-height: 1.75;
+    }
+    .exp-wins li::before {
+      content: '→'; color: var(--accent);
+      font-weight: 600;
+      position: absolute; left: 0; top: 0.05rem;
+    }
+    .exp-wins li strong { color: var(--text); }
+    .metric {
+      display: inline;
+      background: rgba(16,185,129,0.12); color: var(--green);
+      padding: 0.15rem 0.5rem; border-radius: 4px;
+      font-weight: 600; font-size: 0.82rem;
+    }
+
+    /* CHARTERS */
+    #charters { background: var(--bg); }
+    .charters-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 1rem;
+    }
+    .charter-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 14px; padding: 1.4rem 1.6rem;
+      display: flex; align-items: flex-start; gap: 1rem;
+      transition: all 0.25s;
+    }
+    .charter-card:hover {
+      border-color: rgba(99,102,241,0.35);
+      transform: translateY(-3px);
+      box-shadow: 0 8px 28px rgba(0,0,0,0.3);
+    }
+    .charter-icon {
+      width: 38px; height: 38px; border-radius: 10px; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center; font-size: 1.1rem;
+    }
+    .charter-card h4 { font-size: 0.92rem; font-weight: 700; margin-bottom: 0.25rem; color: var(--text); }
+    .charter-card p { font-size: 0.8rem; color: var(--muted); line-height: 1.5; }
+
+    /* ACHIEVEMENTS */
+    #achievements { background: var(--bg); }
+    .ach-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem; }
+    .ach-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 16px; padding: 2rem;
+      transition: all 0.3s; position: relative; overflow: hidden;
+    }
+    .ach-card::after {
+      content: ''; position: absolute; inset: 0; border-radius: 16px;
+      background: linear-gradient(135deg, transparent 60%, rgba(99,102,241,0.05) 100%);
+    }
+    .ach-card:hover { transform: translateY(-4px); border-color: rgba(99,102,241,0.4); box-shadow: 0 12px 40px rgba(0,0,0,0.4); }
+    .ach-emoji { font-size: 2rem; margin-bottom: 1rem; }
+    .ach-card h3 { font-size: 1rem; font-weight: 700; margin-bottom: 0.4rem; }
+    .ach-card p { font-size: 0.83rem; color: var(--muted); }
+    .ach-year { font-size: 0.75rem; color: var(--dimmer); margin-top: 0.75rem; font-weight: 500; letter-spacing: 0.05em; }
+
+    /* SKILLS */
+    #skills { background: var(--bg2); }
+    .skills-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; }
+    .skills-group h3 {
+      font-size: 0.78rem; font-weight: 600; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--dimmer); margin-bottom: 1.2rem;
+    }
+    .tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+    .tag {
+      background: rgba(255,255,255,0.04); border: 1px solid var(--border);
+      color: var(--text); padding: 0.4rem 0.85rem; border-radius: 8px;
+      font-size: 0.82rem; font-weight: 500; transition: all 0.2s; cursor: default;
+    }
+    .tag:hover { background: rgba(99,102,241,0.1); border-color: rgba(99,102,241,0.4); color: var(--accent2); }
+    .tag.accent { background: rgba(99,102,241,0.08); border-color: rgba(99,102,241,0.25); color: var(--accent2); }
+    .tag.teal { background: rgba(6,182,212,0.08); border-color: rgba(6,182,212,0.25); color: var(--teal); }
+    .tag.green { background: rgba(16,185,129,0.08); border-color: rgba(16,185,129,0.25); color: var(--green); }
+    .tag.purple { background: rgba(168,85,247,0.08); border-color: rgba(168,85,247,0.25); color: var(--purple); }
+
+    /* BOOK FEATURE */
+    #book { background: var(--bg); }
+    .book-card {
+      background: linear-gradient(135deg, #141b2d 0%, #0d1a2e 100%);
+      border: 1px solid rgba(99,102,241,0.2);
+      border-radius: 20px; padding: 3rem;
+      display: flex; gap: 3rem; align-items: center;
+      position: relative; overflow: hidden;
+    }
+    .book-card::before {
+      content: ''; position: absolute; top: -80px; right: -80px;
+      width: 300px; height: 300px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(99,102,241,0.1) 0%, transparent 70%);
+    }
+    .book-visual {
+      flex-shrink: 0; width: 120px; height: 160px;
+      background: linear-gradient(135deg, #6366f1, #a855f7);
+      border-radius: 8px; display: flex; align-items: center; justify-content: center;
+      font-size: 3rem; box-shadow: 8px 8px 24px rgba(0,0,0,0.5);
+      position: relative; z-index: 1; text-decoration: none;
+    }
+    .book-info { position: relative; z-index: 1; }
+    .book-info .label {
+      font-size: 0.75rem; color: var(--teal); font-weight: 600;
+      letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 0.5rem;
+    }
+    .book-info h2 {
+      font-family: 'Plus Jakarta Sans', sans-serif; font-size: 1.6rem;
+      font-weight: 800; margin-bottom: 0.75rem;
+    }
+    .book-info h2 a { color: inherit; text-decoration: none; }
+    .book-info h2 a:hover { color: var(--accent2); }
+    .book-info p { color: var(--muted); font-size: 0.95rem; max-width: 480px; }
+    .bestseller-badge {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      background: rgba(249,115,22,0.15); border: 1px solid rgba(249,115,22,0.3);
+      color: #fb923c; padding: 0.3rem 0.8rem; border-radius: 100px;
+      font-size: 0.78rem; font-weight: 600; margin-top: 1rem;
+      text-decoration: none;
+    }
+    .bestseller-badge:hover { background: rgba(249,115,22,0.25); }
+
+    /* CONTACT */
+    #contact { background: var(--bg2); border-top: 1px solid var(--border); }
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+    .contact-cta .section-title { margin-bottom: 0.75rem; }
+    .contact-cta p { color: var(--muted); margin-bottom: 2rem; font-size: 1rem; }
+    .contact-links { display: flex; flex-direction: column; gap: 1rem; }
+    .contact-link {
+      display: flex; align-items: center; gap: 1rem;
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 12px; padding: 1rem 1.4rem;
+      text-decoration: none; color: var(--text); transition: all 0.2s;
+    }
+    .contact-link:hover { border-color: rgba(99,102,241,0.4); transform: translateX(4px); background: rgba(99,102,241,0.06); }
+    .contact-link-icon {
+      width: 42px; height: 42px; border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.2rem; flex-shrink: 0;
+    }
+    .contact-link-text { font-size: 0.85rem; color: var(--muted); }
+    .contact-link-label { font-weight: 600; font-size: 0.95rem; }
+
+    /* FOOTER */
+    footer {
+      background: var(--bg); border-top: 1px solid var(--border);
+      padding: 2rem 5%; text-align: center;
+      color: var(--dimmer); font-size: 0.82rem;
+    }
+    footer a { color: var(--accent2); text-decoration: none; }
+
+    /* ANIMATIONS */
+    .fade-in { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      nav .nav-links { display: none; }
+      .hero-content { grid-template-columns: 1fr; text-align: center; }
+      .hero-photo-wrap { order: -1; display: flex; justify-content: center; }
+      .hero-photo-ring { width: 200px; height: 200px; }
+      .hero-actions { justify-content: center; }
+      .hero-tags { justify-content: center; }
+      .about-grid, .skills-wrap, .contact-grid { grid-template-columns: 1fr; }
+      .photo-grid { grid-template-columns: 1fr 1fr; }
+      .timeline-item { grid-template-columns: 1fr; }
+      .timeline-left { text-align: left; padding-right: 0; }
+      .timeline-item::before { left: 6px; }
+      .timeline-dot { left: 6px; }
+      .timeline-right { padding-left: 1.5rem; }
+      .book-card { flex-direction: column; text-align: center; }
+      .book-card::before { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#hero" class="nav-logo">VG.</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#charters">Charters</a></li>
+    <li><a href="#achievements">Wins</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-content">
+    <div class="hero-left">
+      <h1>
+        I build products<br/>
+        <span class="gradient-text">people love</span>
+      </h1>
+      <p class="hero-subtitle">
+        Product Manager with 4+ years of experience across healthcare and e-commerce, from zero-to-one launches to scaling platforms to <strong>2M+ users</strong>.
+      </p>
+      <div class="hero-tags">
+        <span class="hero-tag">📍 Mumbai, India</span>
+        <span class="hero-tag">🏥 HealthTech</span>
+        <span class="hero-tag">🛒 E-commerce</span>
+        <span class="hero-tag">📖 Published Author</span>
+      </div>
+      <div class="hero-actions">
+        <a href="#experience" class="btn-primary">See My Work</a>
+        <a href="Vg.resume.2026.docx.pdf" class="btn-secondary" download>Download CV</a>
+      </div>
+    </div>
+    <div class="hero-photo-wrap">
+      <div class="hero-photo-ring">
+        <div class="hero-orbit"></div>
+        <div class="hero-photo-inner">
+          <img src="photo.jpg" alt="Vedaang Gulhane" onerror="this.parentElement.innerHTML='<div class=\'photo-placeholder\'>👤</div>'"/>
+        </div>
+      </div>
+      <div class="hero-photo-dot"></div>
+    </div>
+  </div>
+</section>
+
+
+<div class="section-sep"></div>
+<!-- ABOUT -->
+<section id="about">
+  <div class="container">
+    <div class="about-grid fade-in">
+      <div class="about-text">
+        <p class="section-label">About Me</p>
+        <p>I'm a <strong>Product Manager</strong> based in Mumbai with a background in Computer Science. I enjoy working at the intersection of data, user empathy, and business outcomes, and feel most at home in teams that care deeply about the details.</p>
+        <p>At <strong>Medikabazaar</strong>, I work on the customer experience side of the marketplace, from notifications and retention to checkout and subscriptions. A lot of what I do involves understanding where users drop off and finding ways to serve them better.</p>
+        <p>Before this, I was part of the <strong>founding team at Cipla Digital Health</strong>, where we built a healthcare app from scratch. I got to work on a wide range of things, from medicine delivery to payment integrations to app localisation, and learned a lot about what it takes to grow a product to scale.</p>
+        <p>Outside of work, I wrote a <strong>Python book that hit Amazon bestseller</strong>, taught coding to students, and ranked <strong>1801 in IIT-JEE Advanced</strong>. I enjoy learning new things and figuring out hard problems.</p>
+      </div>
+      <div class="photo-grid">
+
+        <div class="photo-item">
+          <img src="photos/presentation.jpg" alt="Presenting at Medikabazaar"
+               onerror="this.parentElement.innerHTML='<div class=\'photo-placeholder-bg\'><span>🎤</span>Presenting the loyalty program to leadership</div>'"/>
+          <div class="photo-caption">Presenting the loyalty program to leadership</div>
+        </div>
+
+        <div class="photo-item">
+          <img src="photos/trophy.jpg" alt="Medikabazaar Hackathon Winner 2026"
+               onerror="this.parentElement.innerHTML='<div class=\'photo-placeholder-bg\'><span>🚀</span>Hackathon Winner 2026 trophy</div>'"/>
+          <div class="photo-caption">Hackathon Winner 2026 trophy</div>
+        </div>
+
+        <div class="photo-item">
+          <img src="photos/hackathon.jpg" alt="Medikabazaar Hackathon 2026 winning team"
+               onerror="this.parentElement.innerHTML='<div class=\'photo-placeholder-bg\'><span>🏆</span>Winning team at Medikabazaar Hackathon 2026</div>'"/>
+          <div class="photo-caption">Winning team at Medikabazaar Hackathon 2026</div>
+        </div>
+
+        <div class="photo-item">
+          <img src="photos/team.jpg" alt="Team celebration at Cipla"
+               onerror="this.parentElement.innerHTML='<div class=\'photo-placeholder-bg\'><span>🎉</span>Team celebration at Cipla Digital Health</div>'"/>
+          <div class="photo-caption">Team celebration at Cipla Digital Health</div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-sep"></div>
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="container">
+    <p class="section-label fade-in">Career</p>
+    <h2 class="section-title fade-in">Where I've worked</h2>
+    <p class="section-sub fade-in">4+ years across healthtech and e-commerce, with a consistent focus on user retention, revenue, and getting things shipped.</p>
+
+    <div class="timeline">
+
+      <!-- Medikabazaar -->
+      <div class="timeline-item fade-in">
+        <div class="timeline-left">
+          <div class="timeline-date">Oct 2024<br/>Present</div>
+        </div>
+        <div class="timeline-dot current"></div>
+        <div class="timeline-right">
+          <div class="exp-card">
+            <div class="exp-header">
+              <div class="exp-company">Medikabazaar</div>
+              <span class="exp-badge badge-current">Current</span>
+            </div>
+            <div class="exp-role">Product Manager, Marketplace · Customer Experience, Outreach & Retention · B2B & B2C</div>
+            <ul class="exp-wins">
+              <li>Built an in-house notification engine to replace a ₹72L/year vendor. Revenue from notifications grew from ₹1.5L to <span class="metric">₹65L/month</span>, a <span class="metric">40x increase</span> over 9 months.</li>
+              <li>Launched personalised retention nudges across channels. Month-1 retention improved by <span class="metric">+50%</span> and Month-2 by <span class="metric">+110%</span>.</li>
+              <li>Improved checkout flow and repeat-purchase journeys, contributing to a <span class="metric">+50% MRR increase</span>.</li>
+              <li>Worked on UX improvements and feedback loops that helped lift the Play Store rating from 3.6 to <span class="metric">4.6 stars</span>.</li>
+              <li>Launched a subscription feature that reached <span class="metric">₹30L/month</span> within 2 months and 40 subscriptions/day.</li>
+              <li>Built AI analytics dashboards using Claude to surface insights for the leadership team.</li>
+              <li>Part of the team that improved CM1 from <span class="metric">-25%</span> to <span class="metric">+7%</span> within 8 months, a meaningful shift in the overall business health.</li>
+              <li>Currently working on a <strong>loyalty program</strong> aimed at improving customer lifetime value.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Cipla -->
+      <div class="timeline-item fade-in">
+        <div class="timeline-left">
+          <div class="timeline-date">Jul 2022<br/>Oct 2024</div>
+        </div>
+        <div class="timeline-dot"></div>
+        <div class="timeline-right">
+          <div class="exp-card">
+            <div class="exp-header">
+              <div class="exp-company">Cipla Digital Health</div>
+              <span class="exp-badge badge-prev">Founding Team</span>
+            </div>
+            <div class="exp-role">Associate Product Manager · B2C Healthcare · Mumbai</div>
+            <ul class="exp-wins">
+              <li>Part of the founding team that launched a B2C healthcare app from zero. The app reached <span class="metric">2M+ users</span> within 2 years.</li>
+              <li>Launched a digital wellness subscription (breathing & yoga) that grew from zero to <span class="metric">100 subscriptions/day</span> in 3 months.</li>
+              <li>Owned medicine delivery and lab tests end-to-end, which contributed to <span class="metric">40% of total revenue</span>.</li>
+              <li>Led app localisation that resulted in a <span class="metric">+20% improvement</span> in activation journeys.</li>
+              <li>Migrated the payment gateway from Easebuzz to Razorpay, leading to a <span class="metric">+30% increase</span> in transaction volume.</li>
+              <li>Managed the full product lifecycle across multiple features using Agile, from ideation through GTM.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Reap Benefit -->
+      <div class="timeline-item fade-in">
+        <div class="timeline-left">
+          <div class="timeline-date">Mar 2022<br/>Jun 2022</div>
+        </div>
+        <div class="timeline-dot"></div>
+        <div class="timeline-right">
+          <div class="exp-card">
+            <div class="exp-header">
+              <div class="exp-company">Reap Benefit</div>
+              <span class="exp-badge badge-intern">Internship</span>
+            </div>
+            <div class="exp-role">Data Analyst Intern · Remote</div>
+            <ul class="exp-wins">
+              <li>Worked with project managers to perform data analysis using Python, SQL, and Excel.</li>
+              <li>Built root cause presentations that helped improve survey conversions by <span class="metric">+300%</span>.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Other -->
+      <div class="timeline-item fade-in">
+        <div class="timeline-left">
+          <div class="timeline-date">2020–2022</div>
+        </div>
+        <div class="timeline-dot"></div>
+        <div class="timeline-right">
+          <div class="exp-card">
+            <div class="exp-header">
+              <div class="exp-company">Early Ventures</div>
+            </div>
+            <div class="exp-role">Founder & Educator</div>
+            <ul class="exp-wins">
+              <li><strong>Codebish (Founder, 8 months)</strong>: Started and ran a small coding education venture.</li>
+              <li><strong>Notch Up (Python Instructor, 6 months)</strong>: Taught Python programming remotely and built the curriculum from scratch.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="section-sep"></div>
+<!-- CHARTERS HANDLED -->
+<section id="charters">
+  <div class="container">
+    <p class="section-label fade-in">Product Ownership</p>
+    <h2 class="section-title fade-in">Charters Handled</h2>
+    <p class="section-sub fade-in">Areas I've owned end-to-end across Cipla Digital Health and Medikabazaar.</p>
+    <div class="charters-grid">
+
+      <div class="charter-card fade-in">
+        <div class="charter-icon bg-teal">🌐</div>
+        <div>
+          <h4>App Localisation</h4>
+          <p>Led localisation across multiple languages, resulting in a +20% lift in activation journeys at Cipla.</p>
+        </div>
+      </div>
+
+      <div class="charter-card fade-in">
+        <div class="charter-icon bg-green">💊</div>
+        <div>
+          <h4>Medicine Delivery</h4>
+          <p>Owned the medicine delivery and lab tests module end-to-end, contributing to 40% of total company revenue.</p>
+        </div>
+      </div>
+
+      <div class="charter-card fade-in">
+        <div class="charter-icon bg-purple">🔄</div>
+        <div>
+          <h4>Digital Subscriptions</h4>
+          <p>Built and scaled subscription products at both companies, from zero to meaningful daily volumes within months.</p>
+        </div>
+      </div>
+
+      <div class="charter-card fade-in">
+        <div class="charter-icon bg-orange">🎮</div>
+        <div>
+          <h4>Gamification</h4>
+          <p>Designed and shipped engagement mechanics including streaks and a mascot to drive daily active usage and habit formation.</p>
+        </div>
+      </div>
+
+      <div class="charter-card fade-in">
+        <div class="charter-icon" style="background:rgba(251,191,36,0.15)">🪙</div>
+        <div>
+          <h4>Reward Points</h4>
+          <p>Owned the reward points system as part of broader loyalty and retention initiatives to increase customer lifetime value.</p>
+        </div>
+      </div>
+
+      <div class="charter-card fade-in">
+        <div class="charter-icon bg-teal">📣</div>
+        <div>
+          <h4>CRM Communication</h4>
+          <p>Built and managed the full communication stack: push notifications, RCS, WhatsApp, and in-app popups, all from a single in-house dashboard.</p>
+        </div>
+      </div>
+
+      <div class="charter-card fade-in">
+        <div class="charter-icon bg-purple">🤖</div>
+        <div>
+          <h4>AI Dashboards</h4>
+          <p>Built AI-powered analytics dashboards using Claude to surface actionable insights for the leadership team in real time.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="section-sep"></div>
+<!-- ACHIEVEMENTS -->
+<section id="achievements">
+  <div class="container">
+    <p class="section-label fade-in">Recognition</p>
+    <h2 class="section-title fade-in">Highlights & Awards</h2>
+    <p class="section-sub fade-in">A few things I'm proud of beyond the day job.</p>
+    <div class="ach-grid">
+      <div class="ach-card fade-in">
+        <div class="ach-emoji">📚</div>
+        <h3>Amazon Bestselling Author</h3>
+        <p>Wrote <a href="https://www.amazon.in/Easiest-Book-Python-Ever/dp/1636698905/" target="_blank" style="color:var(--accent2);text-decoration:none">"The Easiest Book on Python Ever"</a>, aimed at making programming approachable for complete beginners.</p>
+        <div class="ach-year">2020</div>
+      </div>
+      <div class="ach-card fade-in">
+        <div class="ach-emoji">🎓</div>
+        <h3>IIT-JEE Advanced Rank 1801</h3>
+        <p>Secured All India Rank 1801 in one of the most competitive engineering entrance exams in the world.</p>
+        <div class="ach-year">2019</div>
+      </div>
+      <div class="ach-card fade-in">
+        <div class="ach-emoji">🏆</div>
+        <h3>Won Medikabazaar's First Hackathon</h3>
+        <p>First place at Medikabazaar's inaugural internal hackathon, competing across teams company-wide.</p>
+        <div class="ach-year">Feb 2026</div>
+      </div>
+      <div class="ach-card fade-in">
+        <div class="ach-emoji">🏅</div>
+        <h3>Best Employee of the Quarter</h3>
+        <p>Recognised at Medikabazaar for contributions to marketplace and retention strategy.</p>
+        <div class="ach-year">2025</div>
+      </div>
+      <div class="ach-card fade-in">
+        <div class="ach-emoji">⭐</div>
+        <h3>Great Employee of the Year</h3>
+        <p>Company-wide recognition at Cipla Digital Health for contributions across product and revenue.</p>
+        <div class="ach-year">2023</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-sep"></div>
+<!-- BOOK FEATURE -->
+<section id="book">
+  <div class="container">
+    <div class="book-card fade-in">
+      <a href="https://www.amazon.in/Easiest-Book-Python-Ever/dp/1636698905/" target="_blank" class="book-visual">📖</a>
+      <div class="book-info">
+        <div class="label">Published Author</div>
+        <h2><a href="https://www.amazon.in/Easiest-Book-Python-Ever/dp/1636698905/" target="_blank">"The Easiest Book on Python Ever"</a></h2>
+        <p>Written to make programming genuinely accessible, this book reached Amazon bestseller and introduced thousands of beginners to coding, before I transitioned fully into product management.</p>
+        <a href="https://www.amazon.in/Easiest-Book-Python-Ever/dp/1636698905/" target="_blank" class="bestseller-badge">🔥 Amazon Bestseller · 2020 · View on Amazon</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-sep"></div>
+<!-- SKILLS -->
+<section id="skills">
+  <div class="container">
+    <p class="section-label fade-in">Toolkit</p>
+    <h2 class="section-title fade-in">Skills & Tools</h2>
+    <p class="section-sub fade-in">Spanning product strategy, data, design, and AI. I pick up whatever it takes to ship.</p>
+    <div class="skills-wrap fade-in">
+      <div class="skills-group">
+        <h3>Product Skills</h3>
+        <div class="tags">
+          <span class="tag accent">Product Strategy</span>
+          <span class="tag accent">GTM Planning</span>
+          <span class="tag accent">PRD & One-Pagers</span>
+          <span class="tag accent">Agile / Scrum</span>
+          <span class="tag accent">User Interviews</span>
+          <span class="tag accent">UI/UX Wireframing</span>
+          <span class="tag accent">Jira Stories</span>
+          <span class="tag accent">A/B Testing</span>
+          <span class="tag accent">Retention Loops</span>
+          <span class="tag accent">Technical Writing</span>
+          <span class="tag accent">Data Analysis</span>
+          <span class="tag accent">App & Web Events</span>
+        </div>
+      </div>
+      <div class="skills-group">
+        <h3>Analytics & Data</h3>
+        <div class="tags">
+          <span class="tag teal">Mixpanel</span>
+          <span class="tag teal">Firebase</span>
+          <span class="tag teal">Google Analytics</span>
+          <span class="tag teal">PowerBI</span>
+          <span class="tag teal">UXCAM</span>
+          <span class="tag teal">CleverTap</span>
+          <span class="tag teal">Netcore</span>
+          <span class="tag teal">Python</span>
+          <span class="tag teal">SQL</span>
+          <span class="tag teal">Excel</span>
+        </div>
+      </div>
+      <div class="skills-group">
+        <h3>Design & Collaboration</h3>
+        <div class="tags">
+          <span class="tag green">Figma</span>
+          <span class="tag green">Miro</span>
+          <span class="tag green">Canva</span>
+          <span class="tag green">Notion</span>
+          <span class="tag green">Confluence</span>
+          <span class="tag green">Jira</span>
+          <span class="tag green">Basecamp</span>
+          <span class="tag green">Slack</span>
+        </div>
+      </div>
+      <div class="skills-group">
+        <h3>AI Tools</h3>
+        <div class="tags">
+          <span class="tag purple">Claude</span>
+          <span class="tag purple">ChatGPT</span>
+          <span class="tag purple">Gemini</span>
+          <span class="tag purple">AI Dashboards</span>
+          <span class="tag purple">Prompt Engineering</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-sep"></div>
+<!-- CONTACT -->
+<section id="contact">
+  <div class="container">
+    <div class="contact-grid">
+      <div class="contact-cta fade-in">
+        <h2 class="section-title">Let's build<br/>something great.</h2>
+        <p>Whether you're looking for a product collaborator, want to chat about growth or retention, or just want to say hello, I'm always up for a good conversation.</p>
+        <a href="mailto:vedugulhane3@gmail.com" class="btn-primary" style="display:inline-block">Say Hello</a>
+      </div>
+      <div class="contact-links fade-in">
+        <a href="mailto:vedugulhane3@gmail.com" class="contact-link">
+          <div class="contact-link-icon bg-purple">✉️</div>
+          <div>
+            <div class="contact-link-label">Email</div>
+            <div class="contact-link-text">vedugulhane3@gmail.com</div>
+          </div>
+        </a>
+        <a href="https://www.linkedin.com/in/vedaang-gulhane-0b7550198/" class="contact-link" target="_blank">
+          <div class="contact-link-icon bg-teal">💼</div>
+          <div>
+            <div class="contact-link-label">LinkedIn</div>
+            <div class="contact-link-text">Connect with me</div>
+          </div>
+        </a>
+        <a href="tel:+918291649511" class="contact-link">
+          <div class="contact-link-icon bg-orange">📱</div>
+          <div>
+            <div class="contact-link-label">Phone</div>
+            <div class="contact-link-text">+91 82916 49511</div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>Vedaang Gulhane · Mumbai, India · <a href="mailto:vedugulhane3@gmail.com">vedugulhane3@gmail.com</a></p>
+</footer>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('visible'), i * 80);
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+  function animateCount(el) {
+    const target = parseInt(el.dataset.target);
+    const duration = 1800;
+    const step = target / (duration / 16);
+    let current = 0;
+    const timer = setInterval(() => {
+      current += step;
+      if (current >= target) { el.textContent = target; clearInterval(timer); }
+      else { el.textContent = Math.floor(current); }
+    }, 16);
+  }
+  const countObserver = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.querySelectorAll('.count').forEach(animateCount);
+        countObserver.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.3 });
+  document.querySelectorAll('.stats-grid').forEach(el => countObserver.observe(el));
+
+  window.addEventListener('scroll', () => {
+    document.querySelector('nav').style.boxShadow =
+      window.scrollY > 20 ? '0 4px 24px rgba(0,0,0,0.4)' : 'none';
+  });
+</script>
+</body>
+</html>
