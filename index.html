@@ -484,11 +484,11 @@
       .hero-tags { justify-content: center; }
       .about-grid, .skills-wrap, .contact-grid { grid-template-columns: 1fr; }
       .photo-grid { grid-template-columns: 1fr 1fr; }
-      .timeline-item { grid-template-columns: 1fr; }
-      .timeline-left { text-align: left; padding-right: 0; }
+      .timeline-item { display: block; padding-left: 24px; }
+      .timeline-left { text-align: left; padding-right: 0; padding-left: 0; margin-bottom: 0.4rem; }
       .timeline-item::before { left: 6px; }
-      .timeline-dot { left: 6px; }
-      .timeline-right { padding-left: 1.5rem; }
+      .timeline-dot { left: 6px; top: 4px; }
+      .timeline-right { padding-left: 0; }
       .book-card { flex-direction: column; text-align: center; }
       .book-card::before { display: none; }
     }
